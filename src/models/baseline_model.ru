@@ -33,8 +33,6 @@ def load_data(path: str) -> pd.DataFrame:
     return df
 
 def find_target_column(df: pd.DataFrame) -> str:
-    """Целевая колонка задаётся вручную через TARGET_COL наверху файла.
-    Здесь только проверяем, что такая колонка реально есть в датасете."""
     if TARGET_COL not in df.columns:
         raise ValueError(
             f"Колонки '{TARGET_COL}' нет в датасете. "
@@ -78,9 +76,7 @@ def build_preprocessor(numeric_cols, categorical_cols) -> ColumnTransformer:
 
 
 def train_and_evaluate(X, y, numeric_cols, categorical_cols):
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE
-    )
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=TEST_SIZE, random_state=RANDOM_STATE)
     print(f"\nTrain: {X_train.shape[0]} строк, Test: {X_test.shape[0]} строк")
     preprocessor = build_preprocessor(numeric_cols, categorical_cols)
     pipeline = Pipeline(steps=[
