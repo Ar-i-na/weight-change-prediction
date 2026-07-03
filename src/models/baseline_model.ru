@@ -33,8 +33,6 @@ def load_data(path: str) -> pd.DataFrame:
     return df
 
 def find_target_column(df: pd.DataFrame) -> str:
-    """Целевая колонка задаётся вручную через TARGET_COL наверху файла.
-    Здесь только проверяем, что такая колонка реально есть в датасете."""
     if TARGET_COL not in df.columns:
         raise ValueError(
             f"Колонки '{TARGET_COL}' нет в датасете. "
